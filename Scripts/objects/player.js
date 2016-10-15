@@ -30,6 +30,8 @@ var objects;
             configurable: true
         });
         Player.prototype.update = function () {
+            var newRotation = Math.atan2(stage.mouseY - this.position.y, stage.mouseX - this.position.x) * 180 / Math.PI;
+            this.rotation = newRotation;
             _super.prototype.update.call(this);
             this._timer += createjs.Ticker.interval;
             if (controls.UP) {

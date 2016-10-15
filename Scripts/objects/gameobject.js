@@ -100,6 +100,9 @@ var objects;
         };
         GameObject.prototype.destroy = function () {
             this.gotoAndPlay(this._deathAnim);
+            if (this.name == "enemy") {
+                this.name = "dead_enemy";
+            }
             // currentScene.removeChild(this);
         };
         return GameObject;

@@ -9,6 +9,7 @@ var scenes;
         __extends(Shooter, _super);
         function Shooter() {
             _super.call(this);
+            this._timer = 0;
         }
         Shooter.prototype.start = function () {
             stage.enableDOMEvents(true);
@@ -16,18 +17,40 @@ var scenes;
             this.addChild(this._bg);
             this._ship = new objects.Player("ship");
             this.addChild(this._ship);
-            this._enemy = new objects.Enemy("enemy");
-            this.addChild(this._enemy);
+            this.enemies = [];
+            this.enemySpawn();
+            //this._enemy = new objects.Enemy("enemy");
+            //this.addChild(this._enemy);
             stage.addChild(this);
         };
+        Shooter.prototype.enemySpawn = function () {
+            var new_enemy = new objects.Enemy("enemy");
+            this.addChild(new_enemy);
+            this.enemies.push(new_enemy);
+            this._timer = 0;
+        };
         Shooter.prototype.update = function () {
+            var _loop_1 = function (i) {
+                this_1.enemies.forEach(function (enemy) {
+                    collision.check(i, enemy);
+                });
+            };
+            var this_1 = this;
             // Check collisions
             for (var _i = 0, _a = this._ship.getShots; _i < _a.length; _i++) {
                 var i = _a[_i];
-                collision.check(i, this._enemy);
+                _loop_1(i);
             }
             this._ship.update();
-            this._enemy.update();
+            this.enemies.forEach(function (enemy) {
+                //terrible soultion for terrible language     
+                if (enemy.name == "dead_name")
+                    return;
+                enemy.update();
+            });
+            this._timer += createjs.Ticker.interval;
+            if (this._timer > 1000)
+                this.enemySpawn();
         };
         return Shooter;
     }(objects.Scene));

@@ -41,9 +41,9 @@ module objects{
                 (stage.mouseX - this.position.x)/
                   (Math.abs((stage.mouseY - this.position.y))+Math.abs((stage.mouseX - this.position.x)))
                 );
-            console.log("player pos " +this.position.x+" : "+this.position.y);
-            console.log("mouse pos " +stage.mouseX+" : "+stage.mouseY);         
-            console.log("laser scales " +this._scaleX+" : "+this._scaleY);        
+            //console.log("player pos " +this.position.x+" : "+this.position.y);
+            //console.log("mouse pos " +stage.mouseX+" : "+stage.mouseY);         
+            //console.log("laser scales " +this._scaleX+" : "+this._scaleY);        
 
 
             var newRotation = Math.atan2(stage.mouseY - this.position.y, stage.mouseX - this.position.x) * 180 / Math.PI;

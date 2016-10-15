@@ -38,6 +38,12 @@ module objects {
         }
 
         public update() : void {
+
+            var newRotation = Math.atan2(stage.mouseY - this.position.y, stage.mouseX - this.position.x) * 180 / Math.PI;
+            this.rotation=newRotation;
+
+
+
             super.update();
 
             this._timer += createjs.Ticker.interval;

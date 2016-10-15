@@ -3,7 +3,8 @@ module scenes {
 
         private _bg : createjs.Bitmap;
         private _ship : objects.Player;
-        private _enemy : objects.Enemy;
+        public enemies : objects.Enemy[];
+        private _timer : number=0;
 
         constructor() {
             super();
@@ -16,23 +17,50 @@ module scenes {
 
             this._ship = new objects.Player("ship");
             this.addChild(this._ship);
+            
+            this.enemies =[];
+            this.enemySpawn();
 
-            this._enemy = new objects.Enemy("enemy");
-            this.addChild(this._enemy);
+
+
+            //this._enemy = new objects.Enemy("enemy");
+            //this.addChild(this._enemy);
 
             stage.addChild(this);
 
            
         }
 
+        public enemySpawn():void{
+
+            var new_enemy = new objects.Enemy("enemy");
+            this.addChild(new_enemy);
+            this.enemies.push(new_enemy)
+            this._timer = 0;
+
+        }
+
         public update() : void {
             // Check collisions
             for(let i of this._ship.getShots) {
-                collision.check(i, this._enemy);
+                this.enemies.forEach(enemy => {
+                     collision.check(i, enemy);
+                });
+               
             }
 
             this._ship.update();
-            this._enemy.update();
+            this.enemies.forEach(enemy => {
+           //terrible soultion for terrible language     
+                    if(enemy.name=="dead_name")
+                      return;
+                    enemy.update();
+                });
+           
+
+            this._timer += createjs.Ticker.interval;
+            if(this._timer>1000)
+                this.enemySpawn();
         }
     }
 }
