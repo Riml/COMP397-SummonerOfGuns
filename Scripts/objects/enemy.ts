@@ -6,8 +6,8 @@ module objects {
 
         // public variables
         public name:string;
-        public width:number;
-        public height:number;
+        //public width:number;
+        //public height:number;
         public center:objects.Vector2;
 
         constructor(animation : createjs.SpriteSheet) {

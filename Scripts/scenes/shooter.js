@@ -14,7 +14,11 @@ var scenes;
         Shooter.prototype.start = function () {
             stage.enableDOMEvents(true);
             this._bg = new createjs.Bitmap(assets.getResult("bg_bt"));
-            this._bg2 = new createjs.Sprite(background_anim, "idle");
+            //move to some proper place....
+            this._bg2 = new objects.GameObject(background_anim, "background");
+            //this._bg2.position = new objects.Vector2(config.Screen.WIDTH*2, config.Screen.CENTER_Y*2);
+            this._bg2.regX = this._bg2.getBounds().width * 0;
+            this._bg2.regY = this._bg2.getBounds().height * 0;
             this.addChild(this._bg);
             this.addChild(this._bg2);
             this._ship = new objects.Player(player_anim);
@@ -45,7 +49,6 @@ var scenes;
             }
             this._ship.update();
             this.enemies.forEach(function (enemy) {
-                //terrible soultion for terrible language     
                 enemy.update();
             });
             this._timer += createjs.Ticker.interval;

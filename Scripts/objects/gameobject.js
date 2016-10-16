@@ -100,7 +100,7 @@ var objects;
             configurable: true
         });
         GameObject.prototype._initialize = function () {
-            console.log("initializing" + this.name);
+            console.log("initializing " + this.name);
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width / 2;

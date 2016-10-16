@@ -25,11 +25,12 @@ module objects {
 
             window.onkeydown = this._onKeyDown;
             window.onkeyup = this._onKeyUp;
-            var myShip =this;
+            var myPlayer =this;
 
              stage.on("stagemousedown", function(event) {
 				
-                myShip._shoot();
+                myPlayer.gotoAndPlay("cast");
+                //console.log(player_anim.getNumFrames("cast") - 1);
 			}) 
         }
 
@@ -65,12 +66,18 @@ module objects {
                 this.moveLeft();
             }
             if(controls.SHOOT) {
-                this._shoot();
+                this.gotoAndPlay("cast");
             }
 
             for (let laser of this._shots) {
                 laser.update();
             }
+           
+                //console.log(this.currentAnimationFrame);
+             if(this.currentAnimationFrame > player_anim.getNumFrames("cast") - 2){
+
+                 this._shoot();
+             }
 
             //console.log(this._timer);
         }
@@ -78,7 +85,7 @@ module objects {
         private  _shoot():void {
             if(this._timer > 100.0){
 
-                this.gotoAndPlay("cast");
+                
                 let newLaser = new objects.Laser();
                 newLaser.setPosition(new objects.Vector2(this.position.x + 25, this.position.y - 18));
                 currentScene.addChild(newLaser);

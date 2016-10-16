@@ -60,17 +60,17 @@ function init() {
         "frames": {width:50, height:42},
         "animations": {
             
-            "idle": [0,1,"idle",1],
-            "cast": [0,1,2,3,4,5,6,7,8,9,10,11,"idle"]
+            "idle": [0,1,"idle",0.1],
+            "cast": [0,11,"idle",0.1]
         }
     }
     player_anim = new createjs.SpriteSheet(newData);
     
     let newData2 = {
         "images": [assets.getResult("bg_ss")],
-        "frames": {width:1000, height:542},
+        "frames": {width:1000, height:524},
         "animations": {
-           "idle": {"frames": [0,1,2,3,4,5,6,7],"speed": 0.1, next: true }
+           "idle": [0,7,"idle",0.1]
         }
     }
     background_anim = new createjs.SpriteSheet(newData2);
