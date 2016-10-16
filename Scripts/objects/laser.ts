@@ -9,7 +9,7 @@ module objects{
         private _scaleY:number;
 
         constructor() {
-            super("laser", "");
+            super(null,"bullet","bullet",18,1);
         }
 
         public start() : void  {

@@ -7,8 +7,8 @@ var objects;
 (function (objects) {
     var Enemy = (function (_super) {
         __extends(Enemy, _super);
-        function Enemy(imageString) {
-            _super.call(this, imageString, "explode");
+        function Enemy(animation) {
+            _super.call(this, animation, "enemy");
             this.name = "enemy";
             this.position = new objects.Vector2(config.Screen.WIDTH, config.Screen.CENTER_Y);
             this.regX = this.getBounds().width * 0.5;

@@ -10,8 +10,8 @@ module objects {
         public height:number;
         public center:objects.Vector2;
 
-        constructor(imageString:string) {
-            super(imageString, "explode");
+        constructor(animation : createjs.SpriteSheet) {
+            super(animation,"enemy");
 
             this.name = "enemy";
             this.position = new objects.Vector2(config.Screen.WIDTH, config.Screen.CENTER_Y);

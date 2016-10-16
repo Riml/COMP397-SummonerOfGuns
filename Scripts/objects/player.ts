@@ -14,8 +14,8 @@ module objects {
         public centerX:number;
         public centerY:number;
        
-        constructor(imageString:string) {
-            super(imageString, "");
+        constructor(animation : createjs.SpriteSheet) {
+            super(animation,"player");
 
             this._shots = [];
 

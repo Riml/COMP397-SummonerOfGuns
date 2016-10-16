@@ -7,8 +7,8 @@ var objects;
 (function (objects) {
     var Player = (function (_super) {
         __extends(Player, _super);
-        function Player(imageString) {
-            _super.call(this, imageString, "");
+        function Player(animation) {
+            _super.call(this, animation, "player");
             this._timeBetweenShots = 1;
             this._timer = 0;
             this._shots = [];
