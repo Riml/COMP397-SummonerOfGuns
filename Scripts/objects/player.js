@@ -18,13 +18,12 @@ var objects;
             window.onkeydown = this._onKeyDown;
             window.onkeyup = this._onKeyUp;
             var myPlayer = this;
+            playerCasting = false;
             stage.on("stagemousedown", function (event) {
-                console.log("mana : " + mana);
-                //console.log("_casting 1 : " +this._casting);
-                if (!this._casting || mana > 10) {
-                    this._casting = true;
+                if (!playerCasting && mana > 10) {
                     mana -= 10;
                     myPlayer.gotoAndPlay("cast");
+                    playerCasting = true;
                 }
                 //console.log(player_anim.getNumFrames("cast") - 1);
             });
@@ -39,7 +38,6 @@ var objects;
         Player.prototype.update = function () {
             var newRotation = Math.atan2(stage.mouseY - this.position.y, stage.mouseX - this.position.x) * 180 / Math.PI;
             this.rotation = newRotation;
-            //console.log("_casting 5 : " +this._casting);
             _super.prototype.update.call(this);
             this._timer += createjs.Ticker.interval;
             if (controls.UP) {
@@ -63,13 +61,12 @@ var objects;
             }
             //console.log(this.currentAnimationFrame);
             if (this.currentAnimationFrame > player_anim.getNumFrames("cast") - 2) {
-                this._casting = false;
+                playerCasting = false;
                 this._shoot();
             }
             //console.log(this._timer);
         };
         Player.prototype._shoot = function () {
-            this._casting = false;
             if (this._timer > 100.0) {
                 var newLaser = new objects.Laser();
                 newLaser.setPosition(new objects.Vector2(this.position.x + 25, this.position.y - 18));

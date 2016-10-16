@@ -60,6 +60,7 @@ module scenes {
         public enemySpawn():void{
 
             var new_enemy = new objects.Enemy(enemy_anim);
+           
             this.addChild(new_enemy);
             this.enemies.push(new_enemy)
             this._timer = 0;
@@ -88,7 +89,7 @@ module scenes {
            
 
             this._timer += createjs.Ticker.interval;
-            if(this._timer>1000)
+            if(this._timer>8000*Math.random())
                 this.enemySpawn();
         }
     }

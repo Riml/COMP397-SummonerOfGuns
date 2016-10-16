@@ -10,7 +10,7 @@ var objects;
         function Enemy(animation) {
             _super.call(this, animation, "enemy");
             this.name = "enemy";
-            this.position = new objects.Vector2(config.Screen.WIDTH * 0, config.Screen.CENTER_Y);
+            this.position = new objects.Vector2(-90, config.Screen.CENTER_Y + (Math.random() - 0.5) * 400);
             this.regX = this.getBounds().width * 0.5;
             this.regY = this.getBounds().height * 0.5;
             this._speed = -1;

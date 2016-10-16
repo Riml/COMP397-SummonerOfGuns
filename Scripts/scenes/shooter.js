@@ -62,7 +62,7 @@ var scenes;
                 enemy.update();
             });
             this._timer += createjs.Ticker.interval;
-            if (this._timer > 1000)
+            if (this._timer > 8000 * Math.random())
                 this.enemySpawn();
         };
         return Shooter;

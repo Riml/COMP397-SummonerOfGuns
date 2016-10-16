@@ -13,6 +13,7 @@ var minigun_anim : createjs.SpriteSheet;
 //var shipAtlas : createjs.SpriteSheet;
 var score :number=0;
 var mana:number=100;
+var playerCasting:boolean;
 
 var currentScene : objects.Scene;
 var scene: number;

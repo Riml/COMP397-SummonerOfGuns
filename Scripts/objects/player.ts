@@ -6,7 +6,7 @@ module objects {
 
         private _timeBetweenShots : number = 1;
         private _timer : number = 0;
-        private _casting:boolean;
+       
 
         // PUBLIC VARIABLES
         public name:string;
@@ -27,15 +27,18 @@ module objects {
             window.onkeydown = this._onKeyDown;
             window.onkeyup = this._onKeyUp;
             var myPlayer =this;
+            playerCasting=false;
+           
 
              stage.on("stagemousedown", function(event) {
-				console.log("mana : " +mana);
-                //console.log("_casting 1 : " +this._casting);
-                if(!this._casting || mana >10){
-                    this._casting=true;
+				
+               
+                if(!playerCasting && mana >10){
+                 
                     mana-=10;                  
                     myPlayer.gotoAndPlay("cast");
-                    //console.log("_casting 4 : " +this._casting);
+                    playerCasting=true;
+                    
                 }
               
 
@@ -46,13 +49,14 @@ module objects {
 
         get getShots() : objects.Laser[] {
             return this._shots;
+            
         }
 
         public update() : void {
 
             var newRotation = Math.atan2(stage.mouseY - this.position.y, stage.mouseX - this.position.x) * 180 / Math.PI;
             this.rotation=newRotation;
-            //console.log("_casting 5 : " +this._casting);
+          
 
 
 
@@ -87,7 +91,7 @@ module objects {
                 //console.log(this.currentAnimationFrame);
              if(this.currentAnimationFrame > player_anim.getNumFrames("cast") - 2){
                 
-                this._casting=false;
+                playerCasting=false;
                 this._shoot();
                 //console.log("_casting 2 : " +this._casting); 
              }
@@ -96,7 +100,7 @@ module objects {
         }
 
         private  _shoot():void {
-            this._casting=false; 
+           
             if(this._timer > 100.0){
 
                

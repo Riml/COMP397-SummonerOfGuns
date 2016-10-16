@@ -11,6 +11,7 @@ var minigun_anim;
 //var shipAtlas : createjs.SpriteSheet;
 var score = 0;
 var mana = 100;
+var playerCasting;
 var currentScene;
 var scene;
 var collision;
