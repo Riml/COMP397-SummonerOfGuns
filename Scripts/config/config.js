@@ -16,10 +16,10 @@ var config;
         }
         return Screen;
     }());
-    Screen.WIDTH = 1024;
-    Screen.HEIGHT = 480;
-    Screen.CENTER_X = 512;
-    Screen.CENTER_Y = 240;
+    Screen.WIDTH = 1000;
+    Screen.HEIGHT = 600;
+    Screen.CENTER_X = 500;
+    Screen.CENTER_Y = 300;
     config.Screen = Screen;
     var Game = (function () {
         function Game() {

@@ -63,7 +63,7 @@ module objects {
 
         constructor(animation : createjs.SpriteSheet, objectName:string, singleImageString:string=null,w:number =0, h:number=0) {
             if(animation != null)
-                super(animation);
+                super(animation,"idle");
             else{
                  let newData = {
                     "images": [assets.getResult(singleImageString)],
@@ -74,7 +74,7 @@ module objects {
                 }
                 var temp_anim = new createjs.SpriteSheet(newData);
 
-                super(temp_anim);
+                super(temp_anim,"idle");
             }                
             //this._deathAnim = deathAnimString;
             this.name = objectName;
@@ -84,6 +84,7 @@ module objects {
 
         private _initialize():void {
            
+            console.log("initializing"+this.name)
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width / 2;

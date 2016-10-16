@@ -8,10 +8,10 @@ module config {
     }
 
     export class Screen {
-        public static WIDTH : number = 1024;
-        public static HEIGHT : number = 480;
-        public static CENTER_X : number = 512;
-        public static CENTER_Y : number = 240;
+        public static WIDTH : number = 1000;
+        public static HEIGHT : number = 600;
+        public static CENTER_X : number = 500;
+        public static CENTER_Y : number = 300;
     }
     
     export class Game {

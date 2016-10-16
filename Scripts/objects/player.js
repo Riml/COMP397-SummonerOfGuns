@@ -57,6 +57,7 @@ var objects;
         };
         Player.prototype._shoot = function () {
             if (this._timer > 100.0) {
+                this.gotoAndPlay("cast");
                 var newLaser = new objects.Laser();
                 newLaser.setPosition(new objects.Vector2(this.position.x + 25, this.position.y - 18));
                 currentScene.addChild(newLaser);

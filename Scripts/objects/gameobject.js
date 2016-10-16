@@ -12,7 +12,7 @@ var objects;
             if (w === void 0) { w = 0; }
             if (h === void 0) { h = 0; }
             if (animation != null)
-                _super.call(this, animation);
+                _super.call(this, animation, "idle");
             else {
                 var newData = {
                     "images": [assets.getResult(singleImageString)],
@@ -22,7 +22,7 @@ var objects;
                     }
                 };
                 var temp_anim = new createjs.SpriteSheet(newData);
-                _super.call(this, temp_anim);
+                _super.call(this, temp_anim, "idle");
             }
             //this._deathAnim = deathAnimString;
             this.name = objectName;
@@ -100,6 +100,7 @@ var objects;
             configurable: true
         });
         GameObject.prototype._initialize = function () {
+            console.log("initializing" + this.name);
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width / 2;

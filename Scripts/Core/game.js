@@ -46,8 +46,8 @@ function init() {
         "images": [assets.getResult("player_ss")],
         "frames": { width: 50, height: 42 },
         "animations": {
-            "cast": { "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "speed": 0.1, next: false },
-            "idle": { "frames": [0, 1], "speed": 0.1, next: true }
+            "idle": [0, 1, "idle", 1],
+            "cast": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, "idle"]
         }
     };
     player_anim = new createjs.SpriteSheet(newData);
@@ -55,21 +55,21 @@ function init() {
         "images": [assets.getResult("bg_ss")],
         "frames": { width: 1000, height: 542 },
         "animations": {
-            "idle": { "frames": [0, 1], "speed": 0.1, next: true }
+            "idle": { "frames": [0, 1, 2, 3, 4, 5, 6, 7], "speed": 0.1, next: true }
         }
     };
     background_anim = new createjs.SpriteSheet(newData2);
     var newData3 = {
         "images": [assets.getResult("enemy_ss")],
-        "frames": { width: 1000, height: 542 },
+        "frames": { width: 64, height: 135 },
         "animations": {
-            "idle": { "frames": [0, 1], "speed": 0.1, next: true }
+            "idle": { "frames": [0, 1, 2, 3], "speed": 0.1, next: true }
         }
     };
     enemy_anim = new createjs.SpriteSheet(newData3);
     var newData4 = {
         "images": [assets.getResult("minigun_shot_ss")],
-        "frames": { width: 1000, height: 542 },
+        "frames": { width: 90, height: 23 },
         "animations": {
             "idle": { "frames": [0, 1], "speed": 0.1, next: true }
         }

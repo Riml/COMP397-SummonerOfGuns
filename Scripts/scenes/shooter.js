@@ -13,9 +13,10 @@ var scenes;
         }
         Shooter.prototype.start = function () {
             stage.enableDOMEvents(true);
-            this._bg = new createjs.Bitmap(assets.getResult("Space_BG"));
+            this._bg = new createjs.Bitmap(assets.getResult("bg_bt"));
             this._bg2 = new createjs.Sprite(background_anim, "idle");
             this.addChild(this._bg);
+            this.addChild(this._bg2);
             this._ship = new objects.Player(player_anim);
             this.addChild(this._ship);
             this.enemies = [];
