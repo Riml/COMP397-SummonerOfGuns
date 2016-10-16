@@ -121,8 +121,11 @@ var objects;
             //if(this.name=="enemy"){
             //        this.name="dead_enemy"
             // }
-            if (this.name == "enemy")
+            if (this.name == "enemy") {
                 score += 10;
+                if (mana < 100)
+                    mana++;
+            }
             currentScene.removeChild(this);
         };
         return GameObject;

@@ -6,6 +6,7 @@ module objects {
 
         private _timeBetweenShots : number = 1;
         private _timer : number = 0;
+        private _casting:boolean=false;
 
         // PUBLIC VARIABLES
         public name:string;
@@ -28,8 +29,16 @@ module objects {
             var myPlayer =this;
 
              stage.on("stagemousedown", function(event) {
-				
+				console.log("mana : " +mana);
+                if(this._casting || mana <10)
+                    return;
+
+              
+                mana-=10;                  
                 myPlayer.gotoAndPlay("cast");
+                this._casting=true;
+
+
                 //console.log(player_anim.getNumFrames("cast") - 1);
 			}) 
         }
@@ -77,6 +86,7 @@ module objects {
              if(this.currentAnimationFrame > player_anim.getNumFrames("cast") - 2){
 
                  this._shoot();
+                 this._casting=false; 
              }
 
             //console.log(this._timer);

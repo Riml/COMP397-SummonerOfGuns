@@ -21,9 +21,14 @@ var scenes;
             this._scoreTxt = new createjs.Text("Score " + score, "30px Verdana", "#ffFFff");
             this._scoreTxt.x = 10;
             this._scoreTxt.y = 10;
+            this._manaBar = new createjs.Shape();
+            this._manaBar.graphics.beginFill("#0000ff").drawRect(0, 60, 100, 20);
+            this._manaBar.x = config.Screen.WIDTH - 120;
+            //console.log("start x:" +this._manaBar.x);
             this.addChild(this._bg);
             this.addChild(this._bg2);
             this.addChild(this._scoreTxt);
+            this.addChild(this._manaBar);
             this._ship = new objects.Player(player_anim);
             this.addChild(this._ship);
             this.enemies = [];
@@ -44,6 +49,9 @@ var scenes;
                     collision.check(i, enemy);
                 });
                 this_1._scoreTxt.text = "Score : " + score;
+                //scaleX scale both size and Postion! need to reset
+                this_1._manaBar.scaleX = mana / 100;
+                //sconsole.log("new x:" +this._manaBar.x);
             };
             var this_1 = this;
             // Check collisions

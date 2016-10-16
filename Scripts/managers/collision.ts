@@ -24,7 +24,7 @@ module managers {
                 coll.tl_corner.x > objColliding.tl_corner.x && 
                 coll.tr_corner.y < objColliding.bl_corner.y &&
                 coll.br_corner.y > objColliding.tl_corner.y) {
-                    console.log("Destruction time");
+                    //console.log("Destruction time");
                     this.destroy(objColliding);
                     this.destroy(coll);
                     coll.collisionEnter=true;

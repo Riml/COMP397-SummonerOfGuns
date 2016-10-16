@@ -11,6 +11,7 @@ var objects;
             _super.call(this, animation, "player");
             this._timeBetweenShots = 1;
             this._timer = 0;
+            this._casting = false;
             this._shots = [];
             //this.start();
             this.width = this.getBounds().width;
@@ -19,7 +20,12 @@ var objects;
             window.onkeyup = this._onKeyUp;
             var myPlayer = this;
             stage.on("stagemousedown", function (event) {
+                console.log("mana : " + mana);
+                if (this._casting || mana < 10)
+                    return;
+                mana -= 10;
                 myPlayer.gotoAndPlay("cast");
+                this._casting = true;
                 //console.log(player_anim.getNumFrames("cast") - 1);
             });
         }
@@ -57,6 +63,7 @@ var objects;
             //console.log(this.currentAnimationFrame);
             if (this.currentAnimationFrame > player_anim.getNumFrames("cast") - 2) {
                 this._shoot();
+                this._casting = false;
             }
             //console.log(this._timer);
         };
