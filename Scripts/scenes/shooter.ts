@@ -28,7 +28,7 @@ module scenes {
             this._scoreTxt.y=10;
 
             this._manaBar = new createjs.Shape();
-            this._manaBar.graphics.beginFill("#0000ff").drawRect(0,60,100,20);
+            this._manaBar.graphics.beginFill("#0000ff").drawRect(0,10,100,30);
             this._manaBar.x=config.Screen.WIDTH-120;
             //console.log("start x:" +this._manaBar.x);
             
@@ -73,11 +73,8 @@ module scenes {
                      collision.check(i, enemy);
                 });
 
-            this._scoreTxt.text="Score : "+ score; 
-
-            //scaleX scale both size and Postion! need to reset
+            this._scoreTxt.text="Score : "+ score;           
             this._manaBar.scaleX=mana/100;
-            //console.log("new x:" +this._manaBar.x);
            
              
                

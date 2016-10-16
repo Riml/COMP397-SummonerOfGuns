@@ -6,7 +6,7 @@ module objects {
 
         private _timeBetweenShots : number = 1;
         private _timer : number = 0;
-        private _casting:boolean=false;
+        private _casting:boolean;
 
         // PUBLIC VARIABLES
         public name:string;
@@ -30,13 +30,14 @@ module objects {
 
              stage.on("stagemousedown", function(event) {
 				console.log("mana : " +mana);
-                if(this._casting || mana <10)
-                    return;
-
+                //console.log("_casting 1 : " +this._casting);
+                if(!this._casting || mana >10){
+                    this._casting=true;
+                    mana-=10;                  
+                    myPlayer.gotoAndPlay("cast");
+                    //console.log("_casting 4 : " +this._casting);
+                }
               
-                mana-=10;                  
-                myPlayer.gotoAndPlay("cast");
-                this._casting=true;
 
 
                 //console.log(player_anim.getNumFrames("cast") - 1);
@@ -51,6 +52,7 @@ module objects {
 
             var newRotation = Math.atan2(stage.mouseY - this.position.y, stage.mouseX - this.position.x) * 180 / Math.PI;
             this.rotation=newRotation;
+            //console.log("_casting 5 : " +this._casting);
 
 
 
@@ -84,18 +86,20 @@ module objects {
            
                 //console.log(this.currentAnimationFrame);
              if(this.currentAnimationFrame > player_anim.getNumFrames("cast") - 2){
-
-                 this._shoot();
-                 this._casting=false; 
+                
+                this._casting=false;
+                this._shoot();
+                //console.log("_casting 2 : " +this._casting); 
              }
 
             //console.log(this._timer);
         }
 
         private  _shoot():void {
+            this._casting=false; 
             if(this._timer > 100.0){
 
-                
+               
                 let newLaser = new objects.Laser();
                 newLaser.setPosition(new objects.Vector2(this.position.x + 25, this.position.y - 18));
                 currentScene.addChild(newLaser);

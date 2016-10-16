@@ -48,7 +48,7 @@ function init() {
         "images": [assets.getResult("player_ss")],
         "frames": { width: 50, height: 42 },
         "animations": {
-            "idle": [0, 1, "idle", 0.1],
+            "idle": [0, 1, "idle", 0.05],
             "cast": [0, 11, "idle", 0.1]
         }
     };
@@ -65,7 +65,7 @@ function init() {
         "images": [assets.getResult("enemy_ss")],
         "frames": { width: 64, height: 135 },
         "animations": {
-            "idle": { "frames": [0, 1, 2, 3], "speed": 0.1, next: true }
+            "idle": { "frames": [0, 1, 2, 3], "speed": 0.3, next: true }
         }
     };
     enemy_anim = new createjs.SpriteSheet(newData3);
