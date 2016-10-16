@@ -11,6 +11,7 @@ var objects;
             if (singleImageString === void 0) { singleImageString = null; }
             if (w === void 0) { w = 0; }
             if (h === void 0) { h = 0; }
+            this.collisionEnter = false;
             if (animation != null)
                 _super.call(this, animation, "idle");
             else {
@@ -120,6 +121,8 @@ var objects;
             //if(this.name=="enemy"){
             //        this.name="dead_enemy"
             // }
+            if (this.name == "enemy")
+                score += 10;
             currentScene.removeChild(this);
         };
         return GameObject;

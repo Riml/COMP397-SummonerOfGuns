@@ -11,6 +11,7 @@ var enemy_anim : createjs.SpriteSheet;
 var background_anim : createjs.SpriteSheet;
 var minigun_anim : createjs.SpriteSheet;
 //var shipAtlas : createjs.SpriteSheet;
+var score :number=0;
 
 var currentScene : objects.Scene;
 var scene: number;

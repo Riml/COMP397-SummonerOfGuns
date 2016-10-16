@@ -10,10 +10,10 @@ var objects;
         function Enemy(animation) {
             _super.call(this, animation, "enemy");
             this.name = "enemy";
-            this.position = new objects.Vector2(config.Screen.WIDTH, config.Screen.CENTER_Y);
+            this.position = new objects.Vector2(config.Screen.WIDTH * 0, config.Screen.CENTER_Y);
             this.regX = this.getBounds().width * 0.5;
             this.regY = this.getBounds().height * 0.5;
-            this._speed = 1;
+            this._speed = -1;
         }
         Enemy.prototype.update = function () {
             _super.prototype.update.call(this);

@@ -14,13 +14,16 @@ var scenes;
         Shooter.prototype.start = function () {
             stage.enableDOMEvents(true);
             this._bg = new createjs.Bitmap(assets.getResult("bg_bt"));
-            //move to some proper place....
             this._bg2 = new objects.GameObject(background_anim, "background");
-            //this._bg2.position = new objects.Vector2(config.Screen.WIDTH*2, config.Screen.CENTER_Y*2);
+            //move to some proper place....
             this._bg2.regX = this._bg2.getBounds().width * 0;
             this._bg2.regY = this._bg2.getBounds().height * 0;
+            this._scoreTxt = new createjs.Text("Score " + score, "30px Verdana", "#ffFFff");
+            this._scoreTxt.x = 10;
+            this._scoreTxt.y = 10;
             this.addChild(this._bg);
             this.addChild(this._bg2);
+            this.addChild(this._scoreTxt);
             this._ship = new objects.Player(player_anim);
             this.addChild(this._ship);
             this.enemies = [];
@@ -40,6 +43,7 @@ var scenes;
                 this_1.enemies.forEach(function (enemy) {
                     collision.check(i, enemy);
                 });
+                this_1._scoreTxt.text = "Score : " + score;
             };
             var this_1 = this;
             // Check collisions

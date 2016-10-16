@@ -10,6 +10,8 @@ module objects {
         private _BRCorner:Vector2;
         private _BLCorner:Vector2
 
+        public collisionEnter:boolean=false;
+
         //private _deathAnim:string;
 
         // PUBLIC PROPERTIES
@@ -107,7 +109,9 @@ module objects {
             //if(this.name=="enemy"){
             //        this.name="dead_enemy"
            // }
-            
+                if(this.name=="enemy")
+                    score+=10;
+          
              currentScene.removeChild(this);
         }
     }

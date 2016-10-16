@@ -9,6 +9,7 @@ var enemy_anim;
 var background_anim;
 var minigun_anim;
 //var shipAtlas : createjs.SpriteSheet;
+var score = 0;
 var currentScene;
 var scene;
 var collision;
