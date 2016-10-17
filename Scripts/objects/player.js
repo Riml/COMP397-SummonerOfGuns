@@ -19,7 +19,7 @@ var objects;
             window.onkeyup = this._onKeyUp;
             var myPlayer = this;
             playerCasting = false;
-            this.position = new objects.Vector2(900, 524);
+            this.position = new objects.Vector2(900, 514);
             /*stage.on("stagemousedown", function(event) {
                
               
@@ -71,7 +71,7 @@ var objects;
         });
         Player.prototype._summon = function () {
             var newMinigun = new objects.Gun(minigun_anim, "minigun");
-            newMinigun.position = new objects.Vector2(this.x - 20, this.y - 40);
+            newMinigun.position = new objects.Vector2(this.x - 40, this.y - 60);
             this._activeGuns.push(newMinigun);
             currentScene.addChild(newMinigun);
         };
