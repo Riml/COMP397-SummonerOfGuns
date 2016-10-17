@@ -1,12 +1,12 @@
 module objects {
-    export class Player extends objects.GameObject {
+    export class Gun extends objects.GameObject {
 
         private _keyPressed : number;
-        
+        private _shots : objects.Laser[];
 
         private _timeBetweenShots : number = 1;
         private _timer : number = 0;
-        private _activeGuns : objects.Gun[];
+        public shooting:boolean = false;
        
 
         // PUBLIC VARIABLES
@@ -16,73 +16,74 @@ module objects {
         public centerX:number;
         public centerY:number;
        
-        constructor(animation : createjs.SpriteSheet) {
-            super(animation,"player");
+        constructor(animation : createjs.SpriteSheet, gunName:string) {
+            super(animation,gunName);
 
-           
+            this._shots = [];
 
-            this._activeGuns = [];
+            //this.start();
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
 
             window.onkeydown = this._onKeyDown;
             window.onkeyup = this._onKeyUp;
-            var myPlayer =this;
-            playerCasting=false;
-            this.position = new objects.Vector2(900,524);
-            
+            var currentGun =this;
+            //playerCasting=false;
            
 
-             /*stage.on("stagemousedown", function(event) {
-				
-               
-                if(!playerCasting && mana >10){
-                 
-                    mana-=10;                  
-                    myPlayer.gotoAndPlay("cast");
-                    playerCasting=true;
-                    
-                }
-              
+             stage.on("stagemousedown", function(event) {
+                 if(currentGun.shooting)
+                    return;
+                 currentGun.gotoAndPlay("start");
+                 currentGun.shooting=true
+                })
 
-
-                //console.log(player_anim.getNumFrames("cast") - 1);
-			})
-            */ 
+            stage.on("stagemouseup", function(event) {
+                 if(!currentGun.shooting)
+                    return;
+                 currentGun.gotoAndPlay("idle");
+                 currentGun.shooting=false;
+                })     
         }
 
-        
+        get getShots() : objects.Laser[] {
+            return this._shots;
+            
+        }
 
         public update() : void {
-            
+
+            var newRotation = Math.atan2(stage.mouseY - this.position.y, stage.mouseX - this.position.x) * 180 / Math.PI;
+            this.rotation=newRotation;
+          
             super.update();
-            
-            for (let gun of this._activeGuns) {
-                gun.update();
-            }
 
-            this._timer += createjs.Ticker.interval;
+            this._timer += createjs.Ticker.interval;        
 
-            if(controls.RIGHT) {this.moveRight();}
-            if(controls.LEFT) {this.moveLeft();}
-            if(controls.N1) {this.gotoAndPlay("cast");}
-            
-            if(this.currentAnimationFrame > player_anim.getNumFrames("cast") - 2){                
-                playerCasting=false;
-                this._summon();
+            for (let bullet of this._shots) {
+                bullet.update();
             }
-        }
-        get getActiveGuns() : objects.Gun[] {
-            return this._activeGuns;
-            
+           
+         
+             if(this.currentAnimation =="shot"){
+                 this._shoot();
+                }
+
+            //console.log(this._timer);
         }
 
-        private  _summon():void { 
-            let newMinigun = new objects.Gun(minigun_anim,"minigun");
-            newMinigun.position = new objects.Vector2(this.x-20,this.y-40);
-            this._activeGuns.push(newMinigun)
-            currentScene.addChild(newMinigun);
-              
+        private  _shoot():void {
+           
+            if(this._timer > 50.0){
+
+               
+                let newBullet = new objects.Laser();
+                newBullet.setPosition(new objects.Vector2(this.position.x-10 +10 *(0.5-Math.random()), this.position.y +20 *(0.5-Math.random()) ));
+                currentScene.addChild(newBullet);
+                this._shots.push(newBullet);
+
+                this._timer = 0.0;
+            }
        }
 
         private _onKeyDown(event : KeyboardEvent) {
@@ -106,10 +107,6 @@ module objects {
                 case keys.SPACE:
                     controls.SHOOT = true;
                     break;
-               case keys.N1:
-                    console.log("1 key pressed");
-                    controls.N1 = true;
-                    break;     
             }
         }
 
@@ -130,9 +127,6 @@ module objects {
                 case keys.SPACE:
                     controls.SHOOT = false;
                     break;
-                case keys.N1:
-                    controls.N1 = false;
-                    break;    
             }
         }
 

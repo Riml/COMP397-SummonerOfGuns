@@ -4,4 +4,5 @@ module controls {
     export var RIGHT : boolean = false;
     export var LEFT : boolean = false;
     export var SHOOT : boolean = false;
+    export var N1 : boolean = false;
 }

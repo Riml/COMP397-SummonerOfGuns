@@ -31,7 +31,7 @@ var assetData:objects.Asset[] = [
     {id: "bg_bt", src:"../../Assets/images/bottom_background.png"},
     {id: "enemy_ss", src:"../../Assets/images/enemy1_ss.png"},
     {id: "bullet", src:"../../Assets/images/bullet.png"},
-    {id: "minigun_shot_ss", src:"../../Assets/images/minigun_shot.png"},
+    {id: "minigun_ss", src:"../../Assets/images/minigun_start.png"},
     {id: "player_ss", src:"../../Assets/images/mage1_ss.png"},
 
 
@@ -82,16 +82,18 @@ function init() {
         "images": [assets.getResult("enemy_ss")],
         "frames": {width:64, height:135},
         "animations": {
-           "idle": {"frames": [0,1,2,3],"speed": 0.3, next: true }
+           "idle": {"frames": [0,1,2,3],"speed": 0.2, next: true }
         }
     }
     enemy_anim = new createjs.SpriteSheet(newData3);
 
     let newData4 = {
-        "images": [assets.getResult("minigun_shot_ss")],
+        "images": [assets.getResult("minigun_ss")],
         "frames": {width:90, height:23},
         "animations": {
-           "idle": {"frames": [0,1],"speed": 0.1, next: true }
+           "idle": [0,1,"idle",0.1],
+           "shot": [5,6,"shot",0.8],
+           "start": [0,4,"shot",0.1]
         }
     }
     minigun_anim = new createjs.SpriteSheet(newData4);

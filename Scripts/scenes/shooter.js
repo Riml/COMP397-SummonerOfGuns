@@ -29,8 +29,8 @@ var scenes;
             this.addChild(this._bg2);
             this.addChild(this._scoreTxt);
             this.addChild(this._manaBar);
-            this._ship = new objects.Player(player_anim);
-            this.addChild(this._ship);
+            this._mage = new objects.Player(player_anim);
+            this.addChild(this._mage);
             this.enemies = [];
             this.enemySpawn();
             //this._enemy = new objects.Enemy("enemy");
@@ -44,20 +44,23 @@ var scenes;
             this._timer = 0;
         };
         Shooter.prototype.update = function () {
-            var _loop_1 = function (i) {
-                this_1.enemies.forEach(function (enemy) {
-                    collision.check(i, enemy);
-                });
-                this_1._scoreTxt.text = "Score : " + score;
-                this_1._manaBar.scaleX = mana / 100;
-            };
-            var this_1 = this;
             // Check collisions
-            for (var _i = 0, _a = this._ship.getShots; _i < _a.length; _i++) {
-                var i = _a[_i];
-                _loop_1(i);
+            for (var _i = 0, _a = this._mage.getActiveGuns; _i < _a.length; _i++) {
+                var gun = _a[_i];
+                var _loop_1 = function (i) {
+                    this_1.enemies.forEach(function (enemy) {
+                        collision.check(i, enemy);
+                    });
+                };
+                var this_1 = this;
+                for (var _b = 0, _c = gun.getShots; _b < _c.length; _b++) {
+                    var i = _c[_b];
+                    _loop_1(i);
+                }
             }
-            this._ship.update();
+            this._scoreTxt.text = "Score : " + score;
+            this._manaBar.scaleX = mana / 100;
+            this._mage.update();
             this.enemies.forEach(function (enemy) {
                 enemy.update();
             });

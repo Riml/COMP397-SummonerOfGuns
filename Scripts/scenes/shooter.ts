@@ -3,7 +3,7 @@ module scenes {
 
         private _bg : createjs.Bitmap;
         private _bg2 : objects.GameObject;
-        private _ship : objects.Player;
+        private _mage : objects.Player;
         public enemies : objects.Enemy[];
         private _timer : number=0;
         private _manaBar : createjs.Shape;
@@ -41,13 +41,11 @@ module scenes {
             this.addChild(this._scoreTxt);
             this.addChild(this._manaBar);
 
-            this._ship = new objects.Player(player_anim);
-            this.addChild(this._ship);
+            this._mage = new objects.Player(player_anim);
+            this.addChild(this._mage);
             
             this.enemies =[];
             this.enemySpawn();
-
-
 
             //this._enemy = new objects.Enemy("enemy");
             //this.addChild(this._enemy);
@@ -69,24 +67,21 @@ module scenes {
 
         public update() : void {
             // Check collisions
-            for(let i of this._ship.getShots) {
+            for(let gun of this._mage.getActiveGuns) {
+                for(let i of gun.getShots) {
                 this.enemies.forEach(enemy => {
                      collision.check(i, enemy);
+                
                 });
-
+                }
+            }
+         
             this._scoreTxt.text="Score : "+ score;           
             this._manaBar.scaleX=mana/100;
-           
-             
-               
-
-            }
-
-            this._ship.update();
+            this._mage.update();
             this.enemies.forEach(enemy => {
-                            enemy.update();
-                });
-           
+                enemy.update();
+            });
 
             this._timer += createjs.Ticker.interval;
             if(this._timer>8000*Math.random())

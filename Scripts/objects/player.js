@@ -11,69 +11,64 @@ var objects;
             _super.call(this, animation, "player");
             this._timeBetweenShots = 1;
             this._timer = 0;
-            this._shots = [];
-            //this.start();
+            this._activeGuns = [];
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             window.onkeydown = this._onKeyDown;
             window.onkeyup = this._onKeyUp;
             var myPlayer = this;
             playerCasting = false;
-            stage.on("stagemousedown", function (event) {
-                if (!playerCasting && mana > 10) {
-                    mana -= 10;
-                    myPlayer.gotoAndPlay("cast");
-                    playerCasting = true;
-                }
-                //console.log(player_anim.getNumFrames("cast") - 1);
-            });
+            this.position = new objects.Vector2(900, 524);
+            /*stage.on("stagemousedown", function(event) {
+               
+              
+               if(!playerCasting && mana >10){
+                
+                   mana-=10;
+                   myPlayer.gotoAndPlay("cast");
+                   playerCasting=true;
+                   
+               }
+             
+
+
+               //console.log(player_anim.getNumFrames("cast") - 1);
+           })
+           */
         }
-        Object.defineProperty(Player.prototype, "getShots", {
-            get: function () {
-                return this._shots;
-            },
-            enumerable: true,
-            configurable: true
-        });
         Player.prototype.update = function () {
-            var newRotation = Math.atan2(stage.mouseY - this.position.y, stage.mouseX - this.position.x) * 180 / Math.PI;
-            this.rotation = newRotation;
             _super.prototype.update.call(this);
+            for (var _i = 0, _a = this._activeGuns; _i < _a.length; _i++) {
+                var gun = _a[_i];
+                gun.update();
+            }
             this._timer += createjs.Ticker.interval;
-            if (controls.UP) {
-                this.moveUp();
-            }
-            if (controls.DOWN) {
-                this.moveDown();
-            }
             if (controls.RIGHT) {
                 this.moveRight();
             }
             if (controls.LEFT) {
                 this.moveLeft();
             }
-            if (controls.SHOOT) {
+            if (controls.N1) {
                 this.gotoAndPlay("cast");
             }
-            for (var _i = 0, _a = this._shots; _i < _a.length; _i++) {
-                var laser = _a[_i];
-                laser.update();
-            }
-            //console.log(this.currentAnimationFrame);
             if (this.currentAnimationFrame > player_anim.getNumFrames("cast") - 2) {
                 playerCasting = false;
-                this._shoot();
+                this._summon();
             }
-            //console.log(this._timer);
         };
-        Player.prototype._shoot = function () {
-            if (this._timer > 100.0) {
-                var newLaser = new objects.Laser();
-                newLaser.setPosition(new objects.Vector2(this.position.x + 25, this.position.y - 18));
-                currentScene.addChild(newLaser);
-                this._shots.push(newLaser);
-                this._timer = 0.0;
-            }
+        Object.defineProperty(Player.prototype, "getActiveGuns", {
+            get: function () {
+                return this._activeGuns;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Player.prototype._summon = function () {
+            var newMinigun = new objects.Gun(minigun_anim, "minigun");
+            newMinigun.position = new objects.Vector2(this.x - 20, this.y - 40);
+            this._activeGuns.push(newMinigun);
+            currentScene.addChild(newMinigun);
         };
         Player.prototype._onKeyDown = function (event) {
             switch (event.keyCode) {
@@ -96,6 +91,10 @@ var objects;
                 case keys.SPACE:
                     controls.SHOOT = true;
                     break;
+                case keys.N1:
+                    console.log("1 key pressed");
+                    controls.N1 = true;
+                    break;
             }
         };
         Player.prototype._onKeyUp = function (event) {
@@ -114,6 +113,9 @@ var objects;
                     break;
                 case keys.SPACE:
                     controls.SHOOT = false;
+                    break;
+                case keys.N1:
+                    controls.N1 = false;
                     break;
             }
         };
