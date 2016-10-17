@@ -33,13 +33,16 @@ module objects{
 
             this.position.x = newPosition.x;
             this.position.y = newPosition.y;
+            var MX =stage.mouseX+50*(0.5-Math.random());
+            var MY =stage.mouseY+50*(0.5-Math.random());;
+
             this._scaleY= ( 
-                (stage.mouseY - this.position.y)/
-                (Math.abs((stage.mouseY - this.position.y))+Math.abs((stage.mouseX - this.position.x)))
+                (MY - this.position.y)/
+                (Math.abs((MY - this.position.y))+Math.abs((MX - this.position.x)))
                 );
             this._scaleX= ( 
-                (stage.mouseX - this.position.x)/
-                  (Math.abs((stage.mouseY - this.position.y))+Math.abs((stage.mouseX - this.position.x)))
+                (MX - this.position.x)/
+                  (Math.abs((MY - this.position.y))+Math.abs((MX - this.position.x)))
                 );
             //console.log("player pos " +this.position.x+" : "+this.position.y);
             //console.log("mouse pos " +stage.mouseX+" : "+stage.mouseY);         

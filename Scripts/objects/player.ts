@@ -7,6 +7,7 @@ module objects {
         private _timeBetweenShots : number = 1;
         private _timer : number = 0;
         private _activeGuns : objects.Gun[];
+        private _mg_summoned:boolean=false;
        
 
         // PUBLIC VARIABLES
@@ -65,10 +66,19 @@ module objects {
 
             if(controls.RIGHT) {this.moveRight();}
             if(controls.LEFT) {this.moveLeft();}
-            if(controls.N1) {this.gotoAndPlay("cast");}
+            if(controls.N1) {
+                
+                if(mana>50 ){
+                    mana-=50;
+                    
+                    this.gotoAndPlay("cast");
+                }
             
-            if(this.currentAnimationFrame > player_anim.getNumFrames("cast") - 2){                
+        }
+            
+            if(this.currentAnimationFrame > player_anim.getNumFrames("cast") - 2 && this._mg_summoned==false){                
                 playerCasting=false;
+                this._mg_summoned=true;
                 this._summon();
             }
         }

@@ -11,6 +11,7 @@ var objects;
             _super.call(this, animation, "player");
             this._timeBetweenShots = 1;
             this._timer = 0;
+            this._mg_summoned = false;
             this._activeGuns = [];
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
@@ -50,10 +51,14 @@ var objects;
                 this.moveLeft();
             }
             if (controls.N1) {
-                this.gotoAndPlay("cast");
+                if (mana > 50) {
+                    mana -= 50;
+                    this.gotoAndPlay("cast");
+                }
             }
-            if (this.currentAnimationFrame > player_anim.getNumFrames("cast") - 2) {
+            if (this.currentAnimationFrame > player_anim.getNumFrames("cast") - 2 && this._mg_summoned == false) {
                 playerCasting = false;
+                this._mg_summoned = true;
                 this._summon();
             }
         };
