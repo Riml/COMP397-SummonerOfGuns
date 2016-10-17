@@ -78,7 +78,7 @@ module objects {
 
                
                 let newBullet = new objects.Laser();
-                newBullet.setPosition(new objects.Vector2(this.position.x +5 *(0.5-Math.random()), this.position.y-10 +5 *(0.5-Math.random()) ));
+                newBullet.setPosition(new objects.Vector2(this.position.x+5 *(0.5-Math.random()), this.position.y +5 *(0.5-Math.random()) ));
                 currentScene.addChild(newBullet);
                 this._shots.push(newBullet);
 
