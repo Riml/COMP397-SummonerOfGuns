@@ -14,12 +14,16 @@ var mana = 100;
 var playerCasting;
 var currentScene;
 var scene;
+var gamelost;
 var collision;
 // Preload Assets required
 var assetData = [
     //{id: "Space_BG", src:"../../Assets/images/bg.png"},
     { id: "Menu_BG", src: "../../Assets/images/menuBG.png" },
+    { id: "Tut_BG", src: "../../Assets/images/tut_bg.png" },
+    { id: "TutBtn", src: "../../Assets/images/tutorial.png" },
     { id: "PlayBtn", src: "../../Assets/images/playBtn.png" },
+    { id: "BackBtn", src: "../../Assets/images/back.png" },
     //{id: "Laser", src:"../../Assets/images/laser.png"},
     //{id: "Player", src:"../../Assets/images/shipAtlas.png"}
     { id: "bg_ss", src: "../../Assets/images/background_ss.png" },
@@ -27,7 +31,7 @@ var assetData = [
     { id: "enemy_ss", src: "../../Assets/images/enemy1_ss.png" },
     { id: "bullet", src: "../../Assets/images/bullet.png" },
     { id: "minigun_ss", src: "../../Assets/images/minigun_start.png" },
-    { id: "player_ss", src: "../../Assets/images/mage1_ss.png" },
+    { id: "player_ss", src: "../../Assets/images/mage1_ss.png" }
 ];
 function preload() {
     // Create a queue for assets being loaded
@@ -101,6 +105,11 @@ function changeScene() {
             stage.removeAllChildren();
             currentScene = new scenes.Shooter();
             console.log("Starting SHOOTER scene");
+            break;
+        case config.Scene.TUTORIAL:
+            stage.removeAllChildren();
+            currentScene = new scenes.Tutorial();
+            console.log("Starting TUTORIAL scene");
             break;
     }
 }

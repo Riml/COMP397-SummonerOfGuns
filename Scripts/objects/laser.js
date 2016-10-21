@@ -18,6 +18,8 @@ var objects;
         };
         Laser.prototype.update = function () {
             _super.prototype.update.call(this);
+            if (gamelost)
+                return;
             this.position.x += this._scaleX * this._speed;
             this.position.y += this._scaleY * this._speed;
         };

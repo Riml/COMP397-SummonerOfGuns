@@ -17,9 +17,13 @@ var scenes;
         }
         Menu.prototype.start = function () {
             console.log("Menu Scene Started");
-            this._playBtn = new objects.Button("PlayBtn", config.Screen.CENTER_X, config.Screen.CENTER_Y - 150);
-            this.addChild(this._playBtn);
+            gamelost = false;
+            this._playBtn = new objects.Button("PlayBtn", config.Screen.CENTER_X, config.Screen.CENTER_Y - 50);
             this._playBtn.on("click", this._playBtnClick, this);
+            this.addChild(this._playBtn);
+            this._tutorialBtn = new objects.Button("TutBtn", config.Screen.CENTER_X, config.Screen.CENTER_Y + 20);
+            this._tutorialBtn.on("click", this._tutorialBtnClick, this);
+            this.addChild(this._tutorialBtn);
             this._menuBG = new createjs.Bitmap(assets.getResult("Menu_BG"));
             // this.addChild(this._menuBG);
             this.addChildAt(this._menuBG, 0);
@@ -30,6 +34,10 @@ var scenes;
         };
         Menu.prototype._playBtnClick = function (event) {
             scene = config.Scene.SHOOTER;
+            changeScene();
+        };
+        Menu.prototype._tutorialBtnClick = function (event) {
+            scene = config.Scene.TUTORIAL;
             changeScene();
         };
         return Menu;

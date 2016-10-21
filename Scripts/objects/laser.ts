@@ -24,6 +24,8 @@ module objects{
 
         public update() : void {
             super.update();
+            if(gamelost)
+                return;
             this.position.x += this._scaleX*this._speed;
             this.position.y += this._scaleY*this._speed;
            

@@ -17,7 +17,11 @@ var objects;
         }
         Enemy.prototype.update = function () {
             _super.prototype.update.call(this);
-            this.position.x -= this._speed;
+            if (!gamelost)
+                this.position.x -= this._speed;
+            if (this.position.x > config.Screen.WIDTH) {
+                gamelost = true;
+            }
         };
         return Enemy;
     }(objects.GameObject));

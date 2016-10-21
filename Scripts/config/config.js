@@ -10,6 +10,7 @@ var config;
     }());
     Scene.MENU = 0;
     Scene.SHOOTER = 1;
+    Scene.TUTORIAL = 2;
     config.Scene = Scene;
     var Screen = (function () {
         function Screen() {

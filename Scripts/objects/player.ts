@@ -57,6 +57,8 @@ module objects {
         public update() : void {
             
             super.update();
+             if(gamelost)
+                return;
             
             for (let gun of this._activeGuns) {
                 gun.update();

@@ -39,6 +39,8 @@ var objects;
         }
         Player.prototype.update = function () {
             _super.prototype.update.call(this);
+            if (gamelost)
+                return;
             for (var _i = 0, _a = this._activeGuns; _i < _a.length; _i++) {
                 var gun = _a[_i];
                 gun.update();

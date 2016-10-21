@@ -10,6 +10,7 @@ module scenes {
         // Label or bitmap
         // Button 
         private _playBtn : objects.Button;
+        private _tutorialBtn : objects.Button;
         private _menuBG : createjs.Bitmap;
         // Menu Class Contructor
         constructor() {
@@ -18,10 +19,17 @@ module scenes {
 
         public start() : void {
             console.log("Menu Scene Started");
+            gamelost=false;
 
-            this._playBtn = new objects.Button("PlayBtn", config.Screen.CENTER_X, config.Screen.CENTER_Y - 150);
-            this.addChild(this._playBtn);
+            this._playBtn = new objects.Button("PlayBtn", config.Screen.CENTER_X, config.Screen.CENTER_Y - 50);
             this._playBtn.on("click", this._playBtnClick, this);
+            this.addChild(this._playBtn);
+
+            this._tutorialBtn = new objects.Button("TutBtn", config.Screen.CENTER_X, config.Screen.CENTER_Y+20 );
+            this._tutorialBtn.on("click", this._tutorialBtnClick, this);
+            this.addChild(this._tutorialBtn);
+
+
 
             this._menuBG = new createjs.Bitmap(assets.getResult("Menu_BG"));
             // this.addChild(this._menuBG);
@@ -38,6 +46,11 @@ module scenes {
 
         private _playBtnClick(event : createjs.MouseEvent) {
             scene = config.Scene.SHOOTER;
+            changeScene();
+        }
+
+        private _tutorialBtnClick(event : createjs.MouseEvent) {
+            scene = config.Scene.TUTORIAL;
             changeScene();
         }
     }

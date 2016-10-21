@@ -24,7 +24,12 @@ module objects {
 
         public update() : void {
             super.update();
-            this.position.x -= this._speed;
+            if(!gamelost)
+                this.position.x -= this._speed;
+
+            if (this.position.x > config.Screen.WIDTH){
+                gamelost=true;
+            }
         }
     }
 }
