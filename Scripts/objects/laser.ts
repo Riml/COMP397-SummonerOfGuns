@@ -1,7 +1,7 @@
 module objects{
     export class Laser extends objects.GameObject {
 
-        private _speed : number = 15;
+        private _speed : number = 25;
         
         //speed adjusting varibales to ensure that
         //laser moves to the mouse with constant speed
@@ -13,7 +13,7 @@ module objects{
         }
 
         public start() : void  {
-            mana-=0.3;
+            mana-=0.4;
             
        
         }

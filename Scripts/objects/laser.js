@@ -9,10 +9,10 @@ var objects;
         __extends(Laser, _super);
         function Laser() {
             _super.call(this, null, "bullet", "bullet", 18, 1);
-            this._speed = 15;
+            this._speed = 25;
         }
         Laser.prototype.start = function () {
-            mana -= 0.3;
+            mana -= 0.4;
         };
         Laser.prototype.handleComplete = function () {
             //Tween complete

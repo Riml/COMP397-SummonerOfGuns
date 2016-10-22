@@ -19,6 +19,7 @@ module objects {
             this.regX = this.getBounds().width * 0.5;
             this.regY = this.getBounds().height * 0.5;
             this._speed = -0.5 -curretWave*Math.random();
+            animation.framerate=(animation.framerate+1)*(-this._speed*100);
             
 
         }

@@ -85,7 +85,7 @@ module scenes {
             });
 
             globalTimer+=createjs.Ticker.interval;
-            if(globalTimer>20000*this._nextWave){
+            if(globalTimer>7000*this._nextWave){
                 this._nextWave++;
                 curretWave++;
                 console.log("next level");
@@ -94,7 +94,7 @@ module scenes {
 
 
             this._timer += createjs.Ticker.interval;
-            if(this._timer>32000*Math.random()/curretWave+2000)
+            if(this._timer>(30000*Math.random())/(curretWave*2)+50)
                 this.enemySpawn();
         }
     }
