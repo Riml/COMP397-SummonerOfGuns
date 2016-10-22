@@ -15,6 +15,9 @@ var score :number=0;
 var mana:number=100;
 var playerCasting:boolean;
 
+var globalTimer:number=0;
+var curretWave:number=1;
+
 var currentScene : objects.Scene;
 var scene: number;
 var gamelost:boolean;
@@ -28,14 +31,14 @@ var assetData:objects.Asset[] = [
     {id: "Tut_BG", src:"../../Assets/images/tut_bg.png"},
     {id: "TutBtn", src:"../../Assets/images/tutorial.png"},
     {id: "PlayBtn", src:"../../Assets/images/playBtn.png"},
-    {id: "BackBtn", src:"../../Assets/images/back.png"},
-    //{id: "Laser", src:"../../Assets/images/laser.png"},
+     //{id: "Laser", src:"../../Assets/images/laser.png"},
     //{id: "Player", src:"../../Assets/images/shipAtlas.png"}
     {id: "bg_ss", src:"../../Assets/images/background_ss.png"},
     {id: "bg_bt", src:"../../Assets/images/bottom_background.png"},
     {id: "enemy_ss", src:"../../Assets/images/enemy1_ss.png"},
     {id: "bullet", src:"../../Assets/images/bullet.png"},
     {id: "minigun_ss", src:"../../Assets/images/minigun_start.png"},
+    {id: "backBtn", src:"../../Assets/images/back.png"},
     {id: "player_ss", src:"../../Assets/images/mage1_ss.png"}
 ];
 

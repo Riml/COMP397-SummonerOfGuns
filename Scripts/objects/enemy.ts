@@ -9,6 +9,7 @@ module objects {
         //public width:number;
         //public height:number;
         public center:objects.Vector2;
+      
 
         constructor(animation : createjs.SpriteSheet) {
             super(animation,"enemy");
@@ -17,7 +18,7 @@ module objects {
             this.position = new objects.Vector2(-90, config.Screen.CENTER_Y+(Math.random()-0.5)*400);
             this.regX = this.getBounds().width * 0.5;
             this.regY = this.getBounds().height * 0.5;
-            this._speed = -1;
+            this._speed = -0.5 -curretWave*Math.random();
             
 
         }
@@ -27,7 +28,7 @@ module objects {
             if(!gamelost)
                 this.position.x -= this._speed;
 
-            if (this.position.x > config.Screen.WIDTH){
+            if (this.position.x > config.Screen.WIDTH && this.dead == false){
                 gamelost=true;
             }
         }

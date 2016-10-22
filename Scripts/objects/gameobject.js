@@ -12,6 +12,7 @@ var objects;
             if (w === void 0) { w = 0; }
             if (h === void 0) { h = 0; }
             this.collisionEnter = false;
+            this.dead = false;
             if (animation != null)
                 _super.call(this, animation, "idle");
             else {
@@ -101,7 +102,7 @@ var objects;
             configurable: true
         });
         GameObject.prototype._initialize = function () {
-            console.log("initializing " + this.name);
+            //console.log("initializing "+this.name)
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width / 2;
@@ -126,6 +127,7 @@ var objects;
                 if (mana < 100)
                     mana++;
             }
+            this.dead = true;
             currentScene.removeChild(this);
         };
         return GameObject;

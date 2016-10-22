@@ -13,7 +13,7 @@ module objects{
         }
 
         public start() : void  {
-
+            mana-=0.3;
             
        
         }

@@ -12,6 +12,8 @@ var minigun_anim;
 var score = 0;
 var mana = 100;
 var playerCasting;
+var globalTimer = 0;
+var curretWave = 1;
 var currentScene;
 var scene;
 var gamelost;
@@ -23,7 +25,6 @@ var assetData = [
     { id: "Tut_BG", src: "../../Assets/images/tut_bg.png" },
     { id: "TutBtn", src: "../../Assets/images/tutorial.png" },
     { id: "PlayBtn", src: "../../Assets/images/playBtn.png" },
-    { id: "BackBtn", src: "../../Assets/images/back.png" },
     //{id: "Laser", src:"../../Assets/images/laser.png"},
     //{id: "Player", src:"../../Assets/images/shipAtlas.png"}
     { id: "bg_ss", src: "../../Assets/images/background_ss.png" },
@@ -31,6 +32,7 @@ var assetData = [
     { id: "enemy_ss", src: "../../Assets/images/enemy1_ss.png" },
     { id: "bullet", src: "../../Assets/images/bullet.png" },
     { id: "minigun_ss", src: "../../Assets/images/minigun_start.png" },
+    { id: "backBtn", src: "../../Assets/images/back.png" },
     { id: "player_ss", src: "../../Assets/images/mage1_ss.png" }
 ];
 function preload() {

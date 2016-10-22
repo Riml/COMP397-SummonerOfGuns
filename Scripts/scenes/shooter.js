@@ -10,6 +10,7 @@ var scenes;
         function Shooter() {
             _super.call(this);
             this._timer = 0;
+            this._nextWave = 1;
         }
         Shooter.prototype.start = function () {
             stage.enableDOMEvents(true);
@@ -64,8 +65,14 @@ var scenes;
             this.enemies.forEach(function (enemy) {
                 enemy.update();
             });
+            globalTimer += createjs.Ticker.interval;
+            if (globalTimer > 20000 * this._nextWave) {
+                this._nextWave++;
+                curretWave++;
+                console.log("next level");
+            }
             this._timer += createjs.Ticker.interval;
-            if (this._timer > 8000 * Math.random())
+            if (this._timer > 32000 * Math.random() / curretWave + 2000)
                 this.enemySpawn();
         };
         return Shooter;

@@ -11,6 +11,7 @@ module objects {
         private _BLCorner:Vector2
 
         public collisionEnter:boolean=false;
+        public dead:boolean = false;
 
         //private _deathAnim:string;
 
@@ -86,7 +87,7 @@ module objects {
 
         private _initialize():void {
            
-            console.log("initializing "+this.name)
+            //console.log("initializing "+this.name)
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width / 2;
@@ -114,6 +115,7 @@ module objects {
                     if(mana<100)
                         mana++;
                 }
+                this.dead=true;
           
              currentScene.removeChild(this);
         }

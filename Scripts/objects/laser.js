@@ -12,6 +12,7 @@ var objects;
             this._speed = 15;
         }
         Laser.prototype.start = function () {
+            mana -= 0.3;
         };
         Laser.prototype.handleComplete = function () {
             //Tween complete

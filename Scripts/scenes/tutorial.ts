@@ -6,8 +6,6 @@
 module scenes {
     export class Tutorial extends objects.Scene {
 
-        // Private instance variables
-        // Label or bitmap
         // Button 
         private _backBtn : objects.Button;
         //private _tutorialBtn : objects.Button;
@@ -18,20 +16,17 @@ module scenes {
         }
 
         public start() : void {
-            console.log("Menu Scene Started");
+            console.log("Tutorial Scene Started");
             gamelost=false;
 
-            this._backBtn = new objects.Button("BackBtn", config.Screen.CENTER_X, config.Screen.CENTER_Y - 150);
-            this._backBtn.on("click", this._backBtnClick, this);
-            this.addChild(this._backBtn);
-
-
-
-
+          
             this._menuBG = new createjs.Bitmap(assets.getResult("Tut_BG"));
             this.addChild(this._menuBG);
 
-           
+            this._backBtn = new objects.Button("backBtn", config.Screen.CENTER_X, config.Screen.CENTER_Y +50);
+            this._backBtn.on("click", this._backBtnClick, this);
+            this.addChild(this._backBtn);
+     
 
             // Add menu scene to global stage container
             stage.addChild(this);
